@@ -1,4 +1,4 @@
-export default function hash(key) {
+export default function hash(key, capacity) {
   let hashCode = 0;
 
   const primeNumber = 31;
@@ -6,5 +6,5 @@ export default function hash(key) {
     hashCode = primeNumber * hashCode + key.charCodeAt(i);
   }
 
-  return hashCode;
+  return capacity ? hashCode % capacity : hashCode;
 }
