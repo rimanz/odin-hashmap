@@ -5,6 +5,7 @@ export default class HashMap {
     this.capacity = 16;
     this.loadFactor = 0.75;
     this.buckets = Array.from({ length: this.capacity }, () => []);
+    this.itemCount = 0;
   }
 
   set(key, value) {
@@ -16,6 +17,7 @@ export default class HashMap {
     }
 
     bucket.push({ key, value });
+    this.itemCount++;
   }
 
   get(key) {
@@ -27,5 +29,9 @@ export default class HashMap {
     }
 
     return null;
+  }
+
+  length() {
+    return this.itemCount;
   }
 }
