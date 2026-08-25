@@ -1,5 +1,3 @@
-import hash from "./hash";
-
 export default class HashMap {
   constructor() {
     this.capacity = 16;
@@ -8,8 +6,20 @@ export default class HashMap {
     this.itemCount = 0;
   }
 
+  hash(key, capacity) {
+    let hashCode = 0;
+
+    const primeNumber = 31;
+    for (let i = 0; i < key.length; i++) {
+      hashCode = primeNumber * hashCode + key.charCodeAt(i);
+      hashCode = capacity ? hashCode % capacity : hashCode;
+    }
+
+    return hashCode;
+  }
+
   set(key, value) {
-    const index = hash(key, this.capacity);
+    const index = this.hash(key, this.capacity);
     const bucket = this.buckets[index];
 
     for (let entry of bucket) {
@@ -21,7 +31,7 @@ export default class HashMap {
   }
 
   get(key) {
-    const index = hash(key, this.capacity);
+    const index = this.hash(key, this.capacity);
     const bucket = this.buckets[index];
 
     for (let entry of bucket) {
