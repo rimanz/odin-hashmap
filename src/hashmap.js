@@ -78,4 +78,40 @@ export default class HashMap {
   length() {
     return this.itemCount;
   }
+
+  keys() {
+    const itemKeys = [];
+
+    this.buckets.forEach((bucket) => {
+      bucket.forEach((item) => {
+        itemKeys.push(item.key);
+      });
+    });
+
+    return itemKeys;
+  }
+
+  values() {
+    const itemValues = [];
+
+    this.buckets.forEach((bucket) => {
+      bucket.forEach((item) => {
+        itemValues.push(item.value);
+      });
+    });
+
+    return itemValues;
+  }
+
+  entries() {
+    const items = [];
+
+    this.buckets.forEach((bucket) => {
+      bucket.forEach((item) => {
+        items.push([item.key, item.value]);
+      });
+    });
+
+    return items;
+  }
 }
