@@ -62,7 +62,7 @@ Import the `HashMap` class and use its methods:
 ```js
 import HashMap from "./src/hashmap.js";
 
-const list = new HashMap();
+const hashmap = new HashMap();
 ```
 
 Note: `hashmap.js` is exported as an ES module (`export default class HashMap`).
