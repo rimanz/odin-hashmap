@@ -1,0 +1,29 @@
+{
+  "name": "odin-hashmap",
+  "version": "1.0.0",
+  "description": "\"An assignment given by [The Odin Project](https://theodinproject.com) to implement a hashmap\"",
+  "keywords": [
+    "HashMap",
+    "Hash Map"
+  ],
+  "homepage": "https://github.com/rimanz/odin-hashmap#readme",
+  "bugs": {
+    "url": "https://github.com/rimanz/odin-hashmap/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rimanz/odin-hashmap.git"
+  },
+  "license": "ISC",
+  "author": "Riman Das",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "watch": "jest --watch file-types: *.js"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.29.7",
+    "jest": "^30.4.2"
+  }
+}
