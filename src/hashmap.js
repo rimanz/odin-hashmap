@@ -44,4 +44,15 @@ export default class HashMap {
   length() {
     return this.itemCount;
   }
+
+  has(key) {
+    const index = this.hash(key, this.capacity);
+    const bucket = this.buckets[index];
+
+    for (let entry of bucket) {
+      if (entry.key === key) return true;
+    }
+
+    return false;
+  }
 }
