@@ -55,4 +55,22 @@ export default class HashMap {
 
     return false;
   }
+
+  remove(key) {
+    const index = this.hash(key, this.capacity);
+    const bucket = this.buckets[index];
+
+    if (this.has(key)) {
+      updatedBucket = bucket.filter((item) => item.key === key);
+      this.buckets[index] = updatedBucket;
+      this.itemCount--;
+      return true;
+    }
+
+    return false;
+  }
+
+  length() {
+    return this.itemCount;
+  }
 }
