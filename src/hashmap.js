@@ -70,6 +70,11 @@ export default class HashMap {
     return false;
   }
 
+  clear() {
+    this.buckets = Array.from({ length: this.capacity }, () => []);
+    this.itemCount = 0;
+  }
+
   length() {
     return this.itemCount;
   }
