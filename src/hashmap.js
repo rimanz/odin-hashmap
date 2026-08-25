@@ -28,6 +28,21 @@ export default class HashMap {
 
     bucket.push({ key, value });
     this.itemCount++;
+
+    // Increase capacity on exceeding load factor
+    if (this.itemCount >= this.capacity * this.loadFactor) {
+      const items = this.entries();
+
+      this.capacity = this.capacity * 2;
+      this.buckets = Array.from({ length: this.capacity }, () => []);
+      this.itemCount = 0;
+
+      items.forEach((item) => {
+        if (item.length > 0) {
+          this.set(item[0], item[1]);
+        }
+      });
+    }
   }
 
   get(key) {
