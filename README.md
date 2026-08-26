@@ -1,6 +1,6 @@
 # Odin HashMap
 
-An implementation of a hashmap created as an exercise for [The Odin Project](https://www.theodinproject.com/lessons/javascript-hashmap).
+An implementation of a hashmap and hashset created as an exercise for [The Odin Project](https://www.theodinproject.com/lessons/javascript-hashmap).
 
 ## Overview
 
@@ -54,6 +54,8 @@ README.md
 src/
     hashmap.js
     hashmap.test.js
+    hashset.js
+    hashset.test.js
 ```
 
 ## Usage
@@ -82,6 +84,29 @@ Note: `hashmap.js` is exported as an ES module (`export default class HashMap`).
 - `entries()` - returns an array of key/value pair arrays: `[[k1, v1], [k2, v2]]`
 - `remove(key)` - removes the entry with the given key and returns `true` if removed, otherwise `false`
 - `clear()` - removes all entries
+
+### HashMap API
+
+- `new HashMap()` - create an empty hashmap
+- `set(key, value)` - add or update an entry (key-value pair) in the hashmap
+- `get(key)` - returns the value for an existing key, otherwise `null`
+- `length()` - returns the number of entries in the hashmap
+- `has(key)` - returns `true` if a key exists, otherwise `false`
+- `keys()` - returns an array of keys
+- `values()` - returns an array of values
+- `entries()` - returns an array of key/value pair arrays: `[[k1, v1], [k2, v2]]`
+- `remove(key)` - removes the entry with the given key and returns `true` if removed, otherwise `false`
+- `clear()` - removes all entries
+
+### HashSet API
+
+- `new HashSet()` - create an empty hash set
+- `add(value)` - add a value to the set
+- `has(value)` - returns `true` if the value exists in the set, otherwise `false`
+- `remove(value)` - removes the value and returns `true` if removed, otherwise `false`
+- `size()` - returns the number of values in the set
+- `values()` - returns an array of values
+- `clear()` - removes all values from the set
 
 ## Tests
 
