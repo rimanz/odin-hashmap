@@ -50,9 +50,10 @@ npm test -- --coverage
 babel.config.js
 main.js
 package.json
+README.md
 src/
-	hashmap.js
-	hashmap.test.js
+    hashmap.js
+    hashmap.test.js
 ```
 
 ## Usage
@@ -65,11 +66,22 @@ import HashMap from "./src/hashmap.js";
 const hashmap = new HashMap();
 ```
 
+Then use the API's documented bellow as necessary.
+
 Note: `hashmap.js` is exported as an ES module (`export default class HashMap`).
 
 ## API
 
-- `new HashMap()` — create an empty list
+- `new HashMap()` - create an empty hashmap
+- `set(key, value)` - add or update an entry (key-value pair) in the hashmap
+- `get(key)` - returns the value for an existing key, otherwise `null`
+- `length()` - returns the number of entries in the hashmap
+- `has(key)` - returns `true` if a key exists, otherwise `false`
+- `keys()` - returns an array of keys
+- `values()` - returns an array of values
+- `entries()` - returns an array of key/value pair arrays: `[[k1, v1], [k2, v2]]`
+- `remove(key)` - removes the entry with the given key and returns `true` if removed, otherwise `false`
+- `clear()` - removes all entries
 
 ## Tests
 
