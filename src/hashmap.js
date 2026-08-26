@@ -18,42 +18,57 @@ export default class HashMap {
     return hashCode;
   }
 
-  set(key, value) {
+  bucket(key) {
     const index = this.hash(key, this.capacity);
-    const bucket = this.buckets[index];
 
-    for (let entry of bucket) {
-      if (entry.key === key) entry.key = value;
+    return this.buckets[index];
+  }
+
+  entry(key) {
+    const bucket = this.bucket(key);
+
+    for (let item of bucket) {
+      if (item.key === key) return item;
     }
 
-    bucket.push({ key, value });
-    this.itemCount++;
+    return null;
+  }
+
+  growCapacity() {
+    const items = this.entries();
+
+    this.capacity = this.capacity * 2;
+    this.buckets = Array.from({ length: this.capacity }, () => []);
+    this.itemCount = 0;
+
+    items.forEach((item) => {
+      if (item.length > 0) {
+        this.set(item[0], item[1]);
+      }
+    });
+  }
+
+  set(key, value) {
+    const bucket = this.bucket(key);
+    const entry = this.entry(key);
+
+    if (entry) {
+      entry.key = value;
+    } else {
+      bucket.push({ key, value });
+      this.itemCount++;
+    }
 
     // Increase capacity on exceeding load factor
     if (this.itemCount >= this.capacity * this.loadFactor) {
-      const items = this.entries();
-
-      this.capacity = this.capacity * 2;
-      this.buckets = Array.from({ length: this.capacity }, () => []);
-      this.itemCount = 0;
-
-      items.forEach((item) => {
-        if (item.length > 0) {
-          this.set(item[0], item[1]);
-        }
-      });
+      growCapacity();
     }
   }
 
   get(key) {
-    const index = this.hash(key, this.capacity);
-    const bucket = this.buckets[index];
+    const entry = this.entry(key);
 
-    for (let entry of bucket) {
-      if (entry.key === key) return entry.value;
-    }
-
-    return null;
+    return entry ? entry.value : null;
   }
 
   length() {
@@ -61,14 +76,7 @@ export default class HashMap {
   }
 
   has(key) {
-    const index = this.hash(key, this.capacity);
-    const bucket = this.buckets[index];
-
-    for (let entry of bucket) {
-      if (entry.key === key) return true;
-    }
-
-    return false;
+    return !!this.entry(key);
   }
 
   remove(key) {
