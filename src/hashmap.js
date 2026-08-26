@@ -76,7 +76,7 @@ export default class HashMap {
     const bucket = this.buckets[index];
 
     if (this.has(key)) {
-      updatedBucket = bucket.filter((item) => item.key !== key);
+      const updatedBucket = bucket.filter((item) => item.key !== key);
       this.buckets[index] = updatedBucket;
       this.itemCount--;
       return true;
