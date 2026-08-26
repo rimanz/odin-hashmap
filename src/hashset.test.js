@@ -62,7 +62,7 @@ describe("HashSet", () => {
   });
 
   test('set.keys() should return ["banana", "carrot"]', () => {
-    const output = set.keys().toSorted();
+    const output = set.values().toSorted();
     const expected = ["banana", "carrot"];
 
     expect(output).toEqual(expected);

@@ -101,7 +101,8 @@ Note: `hashmap.js` is exported as an ES module (`export default class HashMap`).
 ### HashSet API
 
 - `new HashSet()` - create an empty hash set
-- `add(value)` - add a value to the set
+- `set(value)` - add a value to the set
+- `length()` - returns the number of entries in the hashmap
 - `has(value)` - returns `true` if the value exists in the set, otherwise `false`
 - `remove(value)` - removes the value and returns `true` if removed, otherwise `false`
 - `size()` - returns the number of values in the set

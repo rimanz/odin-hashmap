@@ -6,32 +6,32 @@ export default class HashSet {
     this.itemCount = 0;
   }
 
-  hash(key, capacity) {
+  hash(item, capacity) {
     let hashCode = 0;
 
     const primeNumber = 31;
-    for (let i = 0; i < key.length; i++) {
-      hashCode = primeNumber * hashCode + key.charCodeAt(i);
+    for (let i = 0; i < item.length; i++) {
+      hashCode = primeNumber * hashCode + item.charCodeAt(i);
       hashCode = capacity ? hashCode % capacity : hashCode;
     }
 
     return hashCode;
   }
 
-  set(key) {
-    const index = this.hash(key, this.capacity);
+  set(item) {
+    const index = this.hash(item, this.capacity);
     const bucket = this.buckets[index];
 
     for (let entry of bucket) {
-      if (entry.key === key) return;
+      if (entry.item === item) return;
     }
 
-    bucket.push(key);
+    bucket.push(item);
     this.itemCount++;
 
     // Increase capacity on exceeding load factor
     if (this.itemCount >= this.capacity * this.loadFactor) {
-      const items = this.keys();
+      const items = this.items();
 
       this.capacity = this.capacity * 2;
       this.buckets = Array.from({ length: this.capacity }, () => []);
@@ -49,23 +49,23 @@ export default class HashSet {
     return this.itemCount;
   }
 
-  has(key) {
-    const index = this.hash(key, this.capacity);
+  has(item) {
+    const index = this.hash(item, this.capacity);
     const bucket = this.buckets[index];
 
     for (let entry of bucket) {
-      if (entry === key) return true;
+      if (entry === item) return true;
     }
 
     return false;
   }
 
-  remove(key) {
-    const index = this.hash(key, this.capacity);
+  remove(item) {
+    const index = this.hash(item, this.capacity);
     const bucket = this.buckets[index];
 
-    if (this.has(key)) {
-      const updatedBucket = bucket.filter((item) => item !== key);
+    if (this.has(item)) {
+      const updatedBucket = bucket.filter((item) => item !== item);
       this.buckets[index] = updatedBucket;
       this.itemCount--;
       return true;
@@ -79,13 +79,13 @@ export default class HashSet {
     this.itemCount = 0;
   }
 
-  keys() {
-    const keys = [];
+  values() {
+    const items = [];
 
     this.buckets.forEach((bucket) => {
-      bucket.forEach((key) => itemKeys.push(key));
+      bucket.forEach((item) => items.push(item));
     });
 
-    return keys;
+    return items;
   }
 }
