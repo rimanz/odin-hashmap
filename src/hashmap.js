@@ -90,10 +90,6 @@ export default class HashMap {
     this.itemCount = 0;
   }
 
-  length() {
-    return this.itemCount;
-  }
-
   keys() {
     const itemKeys = [];
 
